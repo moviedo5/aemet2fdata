@@ -110,8 +110,8 @@ head(inv)
 ```{r example-df, eval=FALSE}
 df <- aemet2df(
   station_ids = c("1387", "B228"),
-  start_date = "2018-01-01",
-  end_date = "2020-12-31",
+  start_date = "2023-01-01",
+  end_date = "2025-12-31",
   vars = c("tmed", "prec", "tmin", "tmax"),
   api_key = api_key,
   file = "mydata.csv"
@@ -130,8 +130,8 @@ plot(ld)
 ld <- aemet2lfdata(
   station_ids = c("1387", "B228"),
   vars = c("tmed", "prec"),
-  start_date = "2018-01-01",
-  end_date = "2020-12-31",
+  start_date = "2023-01-01",
+  end_date = "2025-12-31",
   api_key = api_key,
   inventory = inv
 )
@@ -170,7 +170,7 @@ again to continue or to retry failed windows. Then pass the directory to
 
 ```{r bulk, eval=FALSE}
 log <- aemet2download(
-  start_date = "2006-01-01",
+  start_date = "2016-01-01",
   end_date   = "2025-12-31",
   api_key    = api_key,
   out_dir    = "aemet_daily",
