@@ -1,0 +1,21 @@
+bibentry(
+  bibtype = "Manual",
+  title   = "{aemet2fdata}: Download and Convert {AEMET} OpenData to Functional Data",
+  author  = person("Manuel", "Oviedo de la Fuente"),
+  year    = "2026",
+  note    = paste("R package version", meta$Version),
+  url     = "https://moviedo5.github.io/aemet2fdata/"
+)
+
+bibentry(
+  bibtype = "Article",
+  title   = "Statistical Computing in Functional Data Analysis: The {R} Package {fda.usc}",
+  author  = c(person("Manuel", "Febrero-Bande"),
+              person("Manuel", "Oviedo de la Fuente")),
+  journal = "Journal of Statistical Software",
+  year    = "2012",
+  volume  = "51",
+  number  = "4",
+  pages   = "1--28",
+  doi     = "10.18637/jss.v051.i04"
+)

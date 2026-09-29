@@ -1,0 +1,9 @@
+pandoc: 3.8.3
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  aemet_workflow: aemet_workflow.html
+last_built: 2026-09-28T19:45Z
+urls:
+  reference: https://moviedo5.github.io/aemet2fdata/reference
+  article: https://moviedo5.github.io/aemet2fdata/articles

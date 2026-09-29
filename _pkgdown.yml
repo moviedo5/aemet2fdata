@@ -1,0 +1,54 @@
+url: https://moviedo5.github.io/aemet2fdata/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+home:
+  title: aemet2fdata
+  description: >
+    Download meteorological data from AEMET OpenData and convert them
+    into functional data objects in R.
+
+navbar:
+  structure:
+    left: [home, reference, articles]
+    right: [github]
+
+components:
+  github:
+    icon: fa-github
+    href: https://github.com/moviedo5/aemet2fdata
+    aria-label: GitHub repository
+  
+reference:
+  - title: Data download
+    contents:
+      - aemet2df
+      - aemet2csv
+      - aemet2download
+
+  - title: AEMET OpenData to Functional Data
+    contents:
+      - aemet2fdata
+      - aemet2lfdata
+
+  - title: Metadata
+    contents:
+      - aemet2inventory
+
+
+articles:
+  - title: AEMET OpenData to Functional Data Workflow
+    contents:
+      - aemet_workflow
+
+
+development:
+  mode: auto
+
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    css: styles.css

@@ -1,0 +1,35 @@
+Package: aemet2fdata
+Type: Package
+Title: Download and Convert AEMET OpenData to Functional Data
+Version: 0.2.0
+Authors@R: 
+    person(given = "Manuel",
+           family = "Oviedo de la Fuente",
+           role = c("aut", "cre"),
+           email = "manuel.oviedo@udc.es",
+           comment = c(ORCID = "0000-0001-7360-3249"))
+Description: Provides tools to download daily meteorological data from the
+    AEMET (Spanish State Meteorological Agency) OpenData API and convert them
+    into functional data objects ('fdata' and 'ldata') of the 'fda.usc'
+    package, with one curve per station and year. Long periods can be
+    downloaded per station in half-year windows to one CSV file per station
+    (UTF-8), or for all stations with a resumable bulk download to local
+    files.
+URL: https://moviedo5.github.io/aemet2fdata/,
+    https://github.com/moviedo5/aemet2fdata
+BugReports: https://github.com/moviedo5/aemet2fdata/issues
+License: GPL-3
+Encoding: UTF-8
+Depends:
+    R (>= 3.5.0)
+Imports:
+    fda.usc,
+    jsonlite,
+    tools,
+    utils
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.0
