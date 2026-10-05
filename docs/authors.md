@@ -11,14 +11,14 @@ Source:
 [`inst/CITATION`](https://github.com/moviedo5/aemet2fdata/blob/HEAD/inst/CITATION)
 
 Oviedo de la Fuente M (2026). *aemet2fdata: Download and Convert AEMET
-OpenData to Functional Data*. R package version 0.2.0,
+OpenData to Functional Data*. R package version 0.2.1,
 <https://moviedo5.github.io/aemet2fdata/>.
 
     @Manual{,
       title = {{aemet2fdata}: Download and Convert {AEMET} OpenData to Functional Data},
       author = {Manuel {Oviedo de la Fuente}},
       year = {2026},
-      note = {R package version 0.2.0},
+      note = {R package version 0.2.1},
       url = {https://moviedo5.github.io/aemet2fdata/},
     }
 

@@ -22,55 +22,7 @@ If the process stops (rate limits, network, closing R), run the same call
 again. Window files aemet_&amp;lt;start&amp;gt;_&amp;lt;end&amp;gt;.rds left in out_dir
 by version 0.2.0 of this function are reused.
 Read the result with aemet2lfdata or
-aemet2fdata passing out_dir as file.
-Downloads daily climatological data from AEMET OpenData for long periods
-and many stations and saves one file per station and year:
-out_dir/1387/1387_1976.rds
-out_dir/1387/1387_1977.rds
-...
-out_dir/B228/B228_2025.rds
-Each file is a data.frame with the daily records of that station-year
-(fecha, station_id, station_name, provincia,
-altitude and the variables).
-By default the AEMET all stations service (todasestaciones)
-is used, so every station with data is downloaded without giving a list
-of stations. AEMET only serves short periods per request. By default, the
-all-stations service uses 15-day windows; when station_ids is given,
-individual stations use natural half-years (1 January-30 June and
-1 July-31 December). Windows are kept temporarily in out_dir/_tmp
-and, when all windows of a year have been downloaded, they are split into
-the station-year files and deleted.
-The download is resumable: finished years are skipped and, inside
-an unfinished year, windows already downloaded are not requested again.
-If the process stops (rate limits, network, closing R), run the same call
-again. Window files aemet_&amp;lt;start&amp;gt;_&amp;lt;end&amp;gt;.rds left in out_dir
-by version 0.2.0 of this function are reused.
-Read the result with aemet2lfdata or
 aemet2fdata passing out_dir as file."><meta property="og:description" content="Downloads daily climatological data from AEMET OpenData for long periods
-and many stations and saves one file per station and year:
-out_dir/1387/1387_1976.rds
-out_dir/1387/1387_1977.rds
-...
-out_dir/B228/B228_2025.rds
-Each file is a data.frame with the daily records of that station-year
-(fecha, station_id, station_name, provincia,
-altitude and the variables).
-By default the AEMET all stations service (todasestaciones)
-is used, so every station with data is downloaded without giving a list
-of stations. AEMET only serves short periods per request. By default, the
-all-stations service uses 15-day windows; when station_ids is given,
-individual stations use natural half-years (1 January-30 June and
-1 July-31 December). Windows are kept temporarily in out_dir/_tmp
-and, when all windows of a year have been downloaded, they are split into
-the station-year files and deleted.
-The download is resumable: finished years are skipped and, inside
-an unfinished year, windows already downloaded are not requested again.
-If the process stops (rate limits, network, closing R), run the same call
-again. Window files aemet_&amp;lt;start&amp;gt;_&amp;lt;end&amp;gt;.rds left in out_dir
-by version 0.2.0 of this function are reused.
-Read the result with aemet2lfdata or
-aemet2fdata passing out_dir as file.
-Downloads daily climatological data from AEMET OpenData for long periods
 and many stations and saves one file per station and year:
 out_dir/1387/1387_1976.rds
 out_dir/1387/1387_1977.rds
@@ -101,7 +53,7 @@ aemet2fdata passing out_dir as file."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">aemet2fdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,49 +102,11 @@ again. Window files <code>aemet_&lt;start&gt;_&lt;end&gt;.rds</code> left in <co
 by version 0.2.0 of this function are reused.</p>
 <p>Read the result with <code><a href="aemet2lfdata.html">aemet2lfdata</a></code> or
 <code><a href="aemet2fdata.html">aemet2fdata</a></code> passing <code>out_dir</code> as <code>file</code>.</p>
-<p>Downloads daily climatological data from AEMET OpenData for long periods
-and many stations and saves <strong>one file per station and year</strong>:</p><div class="sourceCode"><pre><code>
-out_dir/1387/1387_1976.rds
-out_dir/1387/1387_1977.rds
-...
-out_dir/B228/B228_2025.rds
-</code></pre></div><p>Each file is a data.frame with the daily records of that station-year
-(<code>fecha</code>, <code>station_id</code>, <code>station_name</code>, <code>provincia</code>,
-<code>altitude</code> and the variables).</p>
-<p>By default the AEMET <em>all stations</em> service (<code>todasestaciones</code>)
-is used, so every station with data is downloaded without giving a list
-of stations. AEMET only serves short periods per request. By default, the
-all-stations service uses 15-day windows; when <code>station_ids</code> is given,
-individual stations use natural half-years (1 January-30 June and
-1 July-31 December). Windows are kept temporarily in <code>out_dir/_tmp</code>
-and, when all windows of a year have been downloaded, they are split into
-the station-year files and deleted.</p>
-<p>The download is <strong>resumable</strong>: finished years are skipped and, inside
-an unfinished year, windows already downloaded are not requested again.
-If the process stops (rate limits, network, closing R), run the same call
-again. Window files <code>aemet_&lt;start&gt;_&lt;end&gt;.rds</code> left in <code>out_dir</code>
-by version 0.2.0 of this function are reused.</p>
-<p>Read the result with <code><a href="aemet2lfdata.html">aemet2lfdata</a></code> or
-<code><a href="aemet2fdata.html">aemet2fdata</a></code> passing <code>out_dir</code> as <code>file</code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">aemet2download</span><span class="op">(</span></span>
-<span>  <span class="va">start_date</span>,</span>
-<span>  <span class="va">end_date</span>,</span>
-<span>  <span class="va">api_key</span>,</span>
-<span>  out_dir <span class="op">=</span> <span class="st">"aemet_daily"</span>,</span>
-<span>  station_ids <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  vars <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  window_days <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rds"</span>, <span class="st">"csv"</span><span class="op">)</span>,</span>
-<span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">aemet2download</span><span class="op">(</span></span>
 <span>  <span class="va">start_date</span>,</span>
 <span>  <span class="va">end_date</span>,</span>
 <span>  <span class="va">api_key</span>,</span>
@@ -274,12 +188,6 @@ downloaded again.</p></dd>
 <code>"nodata"</code> or <code>"incomplete"</code> = some window failed; run again),
 <code>n_windows</code>, <code>n_failed</code>, <code>n_files</code> (station-year files
 written) and <code>n_rows</code>.</p>
-<p>Invisibly, a data.frame with one row per year (and station, if
-<code>station_ids</code> is given): <code>year</code>, <code>station_id</code>,
-<code>status</code> (<code>"ok"</code>, <code>"done"</code> = finished in a previous run,
-<code>"nodata"</code> or <code>"incomplete"</code> = some window failed; run again),
-<code>n_windows</code>, <code>n_failed</code>, <code>n_files</code> (station-year files
-written) and <code>n_rows</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -291,36 +199,6 @@ written) and <code>n_rows</code>.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">api_key</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"AEMET_API_KEY"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># 1) Station metadata (coordinates), once</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="aemet2inventory.html">aemet2inventory</a></span><span class="op">(</span>api_key <span class="op">=</span> <span class="va">api_key</span>, file <span class="op">=</span> <span class="st">"inventory.rds"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># 2) All stations, 1976-2025: one file per station and year</span></span></span>
-<span class="r-in"><span><span class="co">#    (long: if it stops, run it again)</span></span></span>
-<span class="r-in"><span><span class="va">log</span> <span class="op">&lt;-</span> <span class="fu">aemet2download</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  start_date <span class="op">=</span> <span class="st">"1976-01-01"</span>,</span></span>
-<span class="r-in"><span>  end_date   <span class="op">=</span> <span class="st">"2025-12-31"</span>,</span></span>
-<span class="r-in"><span>  api_key    <span class="op">=</span> <span class="va">api_key</span>,</span></span>
-<span class="r-in"><span>  out_dir    <span class="op">=</span> <span class="st">"aemet_daily"</span>,</span></span>
-<span class="r-in"><span>  vars       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tmed"</span>, <span class="st">"tmin"</span>, <span class="st">"tmax"</span>, <span class="st">"prec"</span>, <span class="st">"sol"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">log</span><span class="op">$</span><span class="va">status</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"aemet_daily/1387"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># 3) Functional data: one curve per station-year</span></span></span>
-<span class="r-in"><span><span class="va">ld</span> <span class="op">&lt;-</span> <span class="fu"><a href="aemet2lfdata.html">aemet2lfdata</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"aemet_daily"</span>, inventory <span class="op">=</span> <span class="st">"inventory.rds"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># only some stations (reads only their files)</span></span></span>
-<span class="r-in"><span><span class="va">ld2</span> <span class="op">&lt;-</span> <span class="fu"><a href="aemet2lfdata.html">aemet2lfdata</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"aemet_daily"</span>, station_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1387"</span>, <span class="st">"B228"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                    inventory <span class="op">=</span> <span class="st">"inventory.rds"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># complete years of stations with the 50 years</span></span></span>
-<span class="r-in"><span><span class="va">ld</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">ld</span>, <span class="va">ld</span><span class="op">$</span><span class="va">df</span><span class="op">$</span><span class="va">n_days</span> <span class="op">&gt;=</span> <span class="fl">360</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">ny</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ld</span><span class="op">$</span><span class="va">df</span><span class="op">$</span><span class="va">station_id</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">ld50</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">ld</span>, <span class="va">ld</span><span class="op">$</span><span class="va">df</span><span class="op">$</span><span class="va">station_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ny</span><span class="op">)</span><span class="op">[</span><span class="va">ny</span> <span class="op">==</span> <span class="fl">50</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="va">api_key</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"AEMET_API_KEY"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 1) Station metadata (coordinates), once</span></span></span>

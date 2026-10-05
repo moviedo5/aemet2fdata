@@ -20,3 +20,7 @@
 /aemet_ldata*.RData
 
 inst/extdata/apikey.dat
+
+# local files
+/dev/mydata.csv
+apikey.dat

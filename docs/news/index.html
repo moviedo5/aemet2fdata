@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">aemet2fdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,14 @@
       <small>Source: <a href="https://github.com/moviedo5/aemet2fdata/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.1" id="aemet2fdata-021">aemet2fdata 0.2.1<a class="anchor" aria-label="anchor" href="#aemet2fdata-021"></a></h2>
+<ul><li>
+<code><a href="../reference/aemet2lfdata.html">aemet2lfdata()</a></code> and <code><a href="../reference/aemet2fdata.html">aemet2fdata()</a></code> remove duplicated station-day records when several input files overlap (e.g. two downloads of the same period), with a warning. Previously the duplicates were counted twice and <code>n_days</code> could exceed 365.</li>
+<li>The AEMET station inventory (924 stations, downloaded on 2026-09-28) is shipped in <code>inst/extdata/inventory.rds</code>, so coordinates are available without an API key. Examples use it instead of approximate coordinates.</li>
+<li>Added offline tests (<code>tests/testthat</code>) with the bundled example data: station-year curves, <code>ldata</code> alignment, leap years, overlapping files, UTF-8 CSV and parsing of AEMET values and coordinates.</li>
+<li>README: inventory example; developer notes moved out of the README.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="aemet2fdata-020">aemet2fdata 0.2.0<a class="anchor" aria-label="anchor" href="#aemet2fdata-020"></a></h2>
 <div class="section level3">

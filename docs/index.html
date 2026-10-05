@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="index.html">aemet2fdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,11 +134,16 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ld</span><span class="op">$</span><span class="va">tmed</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">ld</span><span class="op">$</span><span class="va">df</span><span class="op">$</span><span class="va">station_id</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot-1.png" alt="Daily mean temperature curves for A Coruña and Palma, 2023-2024."></p>
+<p>The package also ships the AEMET station inventory (924 stations, downloaded on 2026-09-28), so <code>ldata$df</code> can include coordinates without an API key:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"inventory.rds"</span>, package <span class="op">=</span> <span class="st">"aemet2fdata"</span><span class="op">)</span></span>
+<span><span class="va">ld</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/aemet2lfdata.html">aemet2lfdata</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">f</span>, vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tmed"</span>, <span class="st">"prec"</span><span class="op">)</span>, inventory <span class="op">=</span> <span class="va">inv</span><span class="op">)</span></span>
+<span><span class="va">ld</span><span class="op">$</span><span class="va">df</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"station_id"</span>, <span class="st">"station_name"</span>, <span class="st">"altitude"</span>, <span class="st">"lon"</span>, <span class="st">"lat"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example-with-the-api">Example with the API<a class="anchor" aria-label="anchor" href="#example-with-the-api"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/aemet2inventory.html">aemet2inventory</a></span><span class="op">(</span>api_key <span class="op">=</span> <span class="va">api_key</span>, file <span class="op">=</span> <span class="st">"inventory.rds"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">ld</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/aemet2lfdata.html">aemet2lfdata</a></span><span class="op">(</span></span>
@@ -157,7 +162,7 @@
 <h2 id="one-station-whole-history">One station, whole history<a class="anchor" aria-label="anchor" href="#one-station-whole-history"></a>
 </h2>
 <p>Two requests per year and station (1 January-30 June, 1 July-31 December); one CSV per station in UTF-8, so station names with accents or “ñ” are kept. Stations already downloaded are skipped.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">log</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/aemet2csv.html">aemet2csv</a></span><span class="op">(</span><span class="st">"1387"</span>, start_date <span class="op">=</span> <span class="st">"1926-01-01"</span>, end_date <span class="op">=</span> <span class="st">"2025-12-31"</span>,</span>
 <span>                 api_key <span class="op">=</span> <span class="va">api_key</span>, out_dir <span class="op">=</span> <span class="st">"aemet_csv"</span><span class="op">)</span></span>
 <span><span class="va">ld</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/aemet2lfdata.html">aemet2lfdata</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"aemet_csv/1387.csv"</span>,</span>
@@ -167,7 +172,7 @@
 <div class="section level2">
 <h2 id="all-stations-1976-2025">All stations, 1976-2025<a class="anchor" aria-label="anchor" href="#all-stations-1976-2025"></a>
 </h2>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 1) station metadata (coordinates), once</span></span>
 <span><span class="fu"><a href="reference/aemet2inventory.html">aemet2inventory</a></span><span class="op">(</span>api_key <span class="op">=</span> <span class="va">api_key</span>, file <span class="op">=</span> <span class="st">"inventory.rds"</span><span class="op">)</span></span>
 <span></span>
@@ -208,7 +213,7 @@
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"aemet2fdata"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -230,54 +235,6 @@
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <p>Febrero-Bande, M. and Oviedo de la Fuente, M. (2012). Statistical Computing in Functional Data Analysis: The R Package fda.usc. <em>Journal of Statistical Software</em>, 51(4), 1–28. <a href="https://doi.org/10.18637/jss.v051.i04" class="external-link uri">https://doi.org/10.18637/jss.v051.i04</a></p>
-<!--
-&#10;getwd()                                   # comprueba dónde estás
-#pkg <- "D:/Users/moviedo/OneDrive - Universidade da Coruña/GitHub/AEMET/aemet2fdata"
-# unlink(file.path(pkg, c("inst/doc", "doc")), recursive = TRUE)
-# devtools::document(pkg)
-# remove.packages("aemet2fdata")
-&#10;
-library(roxygen2)
-library(devtools)
-# setwd("D:/Users/moviedo/github/fda.usc/")
-&#10;#pkgbuild::compile_dll()
-#roxygenize()
-#unlink(c("inst/doc", "doc"), recursive = TRUE)
-devtools::document()
-# roxygen2::roxygenise()
-&#10;# 1
-&#10;tools::checkRd("man/aemet2csv.Rd")
-tools::checkRd("man/aemet2df.Rd")
-tools::checkRd("man/aemet2fdata.Rd")
-tools::checkRd("man/aemet2lfdata.Rd")
-tools::checkRd("man/aemet2inventory.Rd")
-&#10;devtools::build()
-Sys.setenv(TMPDIR = tempdir())
-devtools::check()
-#devtools::check(vignettes = FALSE)
-devtools::install()
-3
-&#10;pkgdown::build_site()
-devtools::build_vignettes()
-&#10;devtools::build_readme()
-&#10;#knitr::knit("README.Rmd")
-#knitr::knit("README.Rmd", output = "README.md")
-&#10;library(pkgdown)
-#pkgdown::clean_site(force = TRUE)
-#try(pkgdown::clean_site(force=TRUE), silent=TRUE) #borra figures/
-pkgdown::build_site()
-&#10;# devtools::build_win()
-&#10;
-# setwd("..")
-# system("R CMD build aemet2fdata")
-# system("R CMD check - - as-cran aemet2fdata_0.2.0.tar.gz")
-# install.packages("aemet2fdata_0.2.0.tar.gz", repos = NULL, type = "source")
-&#10;devtools::install_github("moviedo5/aemet2fdata",auth_user="moviedo5")
-R CMD check --as-cran and R-wind-builder
-R CMD build "aemet2fdata
-R CMD check aemet2fdata_0.2.0.tar --as-cran  R-wind-builder
-R CMD INSTALL e"aemet2fdata_0.2.0.tar.gz --build
--->
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

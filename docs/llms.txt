@@ -77,6 +77,17 @@ plot(ld$tmed, col = as.integer(factor(ld$df$station_id)))
 ![Daily mean temperature curves for A Coruña and Palma,
 2023-2024.](reference/figures/README-plot-1.png)
 
+The package also ships the AEMET station inventory (924 stations,
+downloaded on 2026-09-28), so `ldata$df` can include coordinates without
+an API key:
+
+``` r
+
+inv <- system.file("extdata", "inventory.rds", package = "aemet2fdata")
+ld <- aemet2lfdata(file = f, vars = c("tmed", "prec"), inventory = inv)
+ld$df[, c("station_id", "station_name", "altitude", "lon", "lat")]
+```
+
 ## Example with the API
 
 ``` r

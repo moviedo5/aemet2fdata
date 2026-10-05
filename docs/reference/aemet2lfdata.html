@@ -17,7 +17,7 @@ classif.gsam, ...)."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">aemet2fdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -201,22 +201,21 @@ inventory <code>lon</code> and <code>lat</code> are <code>NA</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   df tmed tmax tmin prec </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    2    2    2    2    2 </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># With station metadata: normally inv &lt;- aemet2inventory(api_key)</span></span></span>
-<span class="r-in"><span><span class="co"># (approximate coordinates here, for illustration only)</span></span></span>
-<span class="r-in"><span><span class="va">inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>station_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1387"</span>, <span class="st">"B228"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                  lon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8.4194</span>, <span class="fl">2.6258</span><span class="op">)</span>, lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43.3661</span>, <span class="fl">39.5528</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># With station metadata (coordinates, altitude, WMO id) from the inventory</span></span></span>
+<span class="r-in"><span><span class="co"># shipped with the package; aemet2inventory(api_key) downloads a fresh one</span></span></span>
+<span class="r-in"><span><span class="va">inv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"inventory.rds"</span>, package <span class="op">=</span> <span class="st">"aemet2fdata"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ld</span> <span class="op">&lt;-</span> <span class="fu">aemet2lfdata</span><span class="op">(</span>file <span class="op">=</span> <span class="va">f</span>, vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tmed"</span>, <span class="st">"prec"</span><span class="op">)</span>, inventory <span class="op">=</span> <span class="va">inv</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ld</span><span class="op">$</span><span class="va">df</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           station_id  station_name      province altitude     lon     lat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1387_2023       1387      A CORUÑA      A CORUÑA       57 -8.4194 43.3661</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1387_2024       1387      A CORUÑA      A CORUÑA       57 -8.4194 43.3661</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> B228_2023       B228 PALMA, PUERTO ILLES BALEARS        3  2.6258 39.5528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> B228_2024       B228 PALMA, PUERTO ILLES BALEARS        3  2.6258 39.5528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           wmo_id year n_days</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1387_2023   &lt;NA&gt; 2023    365</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1387_2024   &lt;NA&gt; 2024    365</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> B228_2023   &lt;NA&gt; 2023    365</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> B228_2024   &lt;NA&gt; 2024    365</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           station_id  station_name province altitude       lon      lat wmo_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1387_2023       1387      A CORUÑA A CORUÑA       57 -8.421389 43.36583  08001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1387_2024       1387      A CORUÑA A CORUÑA       57 -8.421389 43.36583  08001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> B228_2023       B228 PALMA, PUERTO BALEARES        3  2.625278 39.55417  08301</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> B228_2024       B228 PALMA, PUERTO BALEARES        3  2.625278 39.55417  08301</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           year n_days</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1387_2023 2023    365</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1387_2024 2024    365</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> B228_2023 2023    365</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> B228_2024 2024    365</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Download from the API</span></span></span>

@@ -174,22 +174,21 @@ sapply(ld2023, NROW)
 #>   df tmed tmax tmin prec 
 #>    2    2    2    2    2 
 
-# With station metadata: normally inv <- aemet2inventory(api_key)
-# (approximate coordinates here, for illustration only)
-inv <- data.frame(station_id = c("1387", "B228"),
-                  lon = c(-8.4194, 2.6258), lat = c(43.3661, 39.5528))
+# With station metadata (coordinates, altitude, WMO id) from the inventory
+# shipped with the package; aemet2inventory(api_key) downloads a fresh one
+inv <- system.file("extdata", "inventory.rds", package = "aemet2fdata")
 ld <- aemet2lfdata(file = f, vars = c("tmed", "prec"), inventory = inv)
 ld$df
-#>           station_id  station_name      province altitude     lon     lat
-#> 1387_2023       1387      A CORUÑA      A CORUÑA       57 -8.4194 43.3661
-#> 1387_2024       1387      A CORUÑA      A CORUÑA       57 -8.4194 43.3661
-#> B228_2023       B228 PALMA, PUERTO ILLES BALEARS        3  2.6258 39.5528
-#> B228_2024       B228 PALMA, PUERTO ILLES BALEARS        3  2.6258 39.5528
-#>           wmo_id year n_days
-#> 1387_2023   <NA> 2023    365
-#> 1387_2024   <NA> 2024    365
-#> B228_2023   <NA> 2023    365
-#> B228_2024   <NA> 2024    365
+#>           station_id  station_name province altitude       lon      lat wmo_id
+#> 1387_2023       1387      A CORUÑA A CORUÑA       57 -8.421389 43.36583  08001
+#> 1387_2024       1387      A CORUÑA A CORUÑA       57 -8.421389 43.36583  08001
+#> B228_2023       B228 PALMA, PUERTO BALEARES        3  2.625278 39.55417  08301
+#> B228_2024       B228 PALMA, PUERTO BALEARES        3  2.625278 39.55417  08301
+#>           year n_days
+#> 1387_2023 2023    365
+#> 1387_2024 2024    365
+#> B228_2023 2023    365
+#> B228_2024 2024    365
 
 if (FALSE) { # \dontrun{
 # Download from the API
