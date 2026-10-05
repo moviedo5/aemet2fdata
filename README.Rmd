@@ -68,6 +68,15 @@ ld$df
 plot(ld$tmed, col = as.integer(factor(ld$df$station_id)))
 ```
 
+The package also ships the AEMET station inventory (924 stations, downloaded
+on 2026-09-28), so `ldata$df` can include coordinates without an API key:
+
+```r
+inv <- system.file("extdata", "inventory.rds", package = "aemet2fdata")
+ld <- aemet2lfdata(file = f, vars = c("tmed", "prec"), inventory = inv)
+ld$df[, c("station_id", "station_name", "altitude", "lon", "lat")]
+```
+
 ## Example with the API
 
 ```r
@@ -172,66 +181,3 @@ This work was supported by grants from MICINN and the Xunta de Galicia (ED431C-2
 Febrero-Bande, M. and Oviedo de la Fuente, M. (2012). Statistical Computing in
 Functional Data Analysis: The R Package fda.usc. *Journal of Statistical
 Software*, 51(4), 1–28. <https://doi.org/10.18637/jss.v051.i04>
-
-
-<!--
-
-getwd()                                   # comprueba dónde estás
-#pkg <- "D:/Users/moviedo/OneDrive - Universidade da Coruña/GitHub/AEMET/aemet2fdata"
-# unlink(file.path(pkg, c("inst/doc", "doc")), recursive = TRUE)
-# devtools::document(pkg)
-# remove.packages("aemet2fdata")
-
-
-library(roxygen2)
-library(devtools)
-# setwd("D:/Users/moviedo/github/fda.usc/")
-
-#pkgbuild::compile_dll()
-#roxygenize()
-#unlink(c("inst/doc", "doc"), recursive = TRUE)
-devtools::document()
-# roxygen2::roxygenise()
-
-# 1
-
-tools::checkRd("man/aemet2csv.Rd")
-tools::checkRd("man/aemet2df.Rd")
-tools::checkRd("man/aemet2fdata.Rd")
-tools::checkRd("man/aemet2lfdata.Rd")
-tools::checkRd("man/aemet2inventory.Rd")
-
-devtools::build()
-Sys.setenv(TMPDIR = tempdir()) 
-devtools::check()
-#devtools::check(vignettes = FALSE)
-devtools::install()
-3
-
-pkgdown::build_site()
-devtools::build_vignettes()
-
-devtools::build_readme()
-
-#knitr::knit("README.Rmd")
-#knitr::knit("README.Rmd", output = "README.md")
-
-library(pkgdown)
-#pkgdown::clean_site(force = TRUE)
-#try(pkgdown::clean_site(force=TRUE), silent=TRUE) #borra figures/
-pkgdown::build_site()
-
-# devtools::build_win()
-
-
-# setwd("..")
-# system("R CMD build aemet2fdata")
-# system("R CMD check - - as-cran aemet2fdata_0.2.0.tar.gz")
-# install.packages("aemet2fdata_0.2.0.tar.gz", repos = NULL, type = "source")
-
-devtools::install_github("moviedo5/aemet2fdata",auth_user="moviedo5")
-R CMD check --as-cran and R-wind-builder 
-R CMD build "aemet2fdata
-R CMD check aemet2fdata_0.2.0.tar --as-cran  R-wind-builder 
-R CMD INSTALL e"aemet2fdata_0.2.0.tar.gz --build
--->

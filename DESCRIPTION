@@ -1,7 +1,7 @@
 Package: aemet2fdata
 Type: Package
 Title: Download and Convert AEMET OpenData to Functional Data
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     person(given = "Manuel",
            family = "Oviedo de la Fuente",
@@ -29,7 +29,9 @@ Imports:
     utils
 Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 Config/roxygen2/version: 8.1.0
+Config/testthat/edition: 3

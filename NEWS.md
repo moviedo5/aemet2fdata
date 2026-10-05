@@ -1,3 +1,17 @@
+# aemet2fdata 0.2.1
+
+* `aemet2lfdata()` and `aemet2fdata()` remove duplicated station-day records
+  when several input files overlap (e.g. two downloads of the same period),
+  with a warning. Previously the duplicates were counted twice and `n_days`
+  could exceed 365.
+* The AEMET station inventory (924 stations, downloaded on 2026-09-28) is
+  shipped in `inst/extdata/inventory.rds`, so coordinates are available
+  without an API key. Examples use it instead of approximate coordinates.
+* Added offline tests (`tests/testthat`) with the bundled example data:
+  station-year curves, `ldata` alignment, leap years, overlapping files,
+  UTF-8 CSV and parsing of AEMET values and coordinates.
+* README: inventory example; developer notes moved out of the README.
+
 # aemet2fdata 0.2.0
 
 ## Bug fixes

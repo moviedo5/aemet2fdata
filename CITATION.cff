@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "aemet2fdata: Download and Convert AEMET OpenData to Functional Data"
 type: software
-version: 0.2.0
+version: 0.2.1
 authors:
   - family-names: "Oviedo de la Fuente"
     given-names: "Manuel"
