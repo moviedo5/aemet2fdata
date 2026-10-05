@@ -8,6 +8,11 @@
 #' passed as \code{inventory} to \code{\link{aemet2lfdata}} without calling
 #' the API again.
 #'
+#' A copy of the inventory (924 stations, downloaded on 2026-09-28) is shipped
+#' with the package in \code{inst/extdata/inventory.rds}, so coordinates are
+#' available without an API key:
+#' \code{system.file("extdata", "inventory.rds", package = "aemet2fdata")}.
+#'
 #' @param api_key character. AEMET OpenData API key.
 #' @param file NULL or character path. If NULL, nothing is written.
 #'   If a path is provided, the directory is created if missing.
@@ -32,6 +37,10 @@
 #' Stations without valid coordinates are dropped.
 #'
 #' @examples
+#' # Inventory shipped with the package (no API key needed)
+#' inv0 <- readRDS(system.file("extdata", "inventory.rds", package = "aemet2fdata"))
+#' head(inv0)
+#'
 #' \dontrun{
 #' api_key <- Sys.getenv("AEMET_API_KEY")
 #'

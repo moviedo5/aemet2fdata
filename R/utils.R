@@ -367,8 +367,21 @@ aemet_metadata <- data.frame(
     }
     d
   })
-  if (length(lst) == 1L) return(lst[[1]])
-  .aemet_bind(lst)
+  out <- if (length(lst) == 1L) lst[[1]] else .aemet_bind(lst)
+  # Overlapping input files (e.g. two downloads of the same period): keep one
+  # record per station and day; otherwise n_days could exceed 365.
+  if (all(c("station_id", "fecha") %in% names(out))) {
+    # numeric key (station x day): fast and light for millions of records
+    key <- match(out$station_id, unique(out$station_id)) * 1e6 +
+      as.numeric(as.Date(out$fecha))
+    dup <- duplicated(key, fromLast = TRUE)
+    if (any(dup)) {
+      warning(sum(dup), " duplicated station-day record(s) removed ",
+              "(overlapping input files); the last one read is kept.", call. = FALSE)
+      out <- out[!dup, , drop = FALSE]
+    }
+  }
+  out
 }
 
 #' Curves (one per station-year) and position of every daily record in the

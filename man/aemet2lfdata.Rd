@@ -116,10 +116,9 @@ plot(ld$tmed, col = as.integer(factor(ld$df$station_id)))
 ld2023 <- subset(ld, ld$df$year == 2023)
 sapply(ld2023, NROW)
 
-# With station metadata: normally inv <- aemet2inventory(api_key)
-# (approximate coordinates here, for illustration only)
-inv <- data.frame(station_id = c("1387", "B228"),
-                  lon = c(-8.4194, 2.6258), lat = c(43.3661, 39.5528))
+# With station metadata (coordinates, altitude, WMO id) from the inventory
+# shipped with the package; aemet2inventory(api_key) downloads a fresh one
+inv <- system.file("extdata", "inventory.rds", package = "aemet2fdata")
 ld <- aemet2lfdata(file = f, vars = c("tmed", "prec"), inventory = inv)
 ld$df
 

@@ -12,7 +12,7 @@ unlink(c("inst/doc", "doc"), recursive = TRUE)   # restos de build_vignettes()
 document()
 for (f in list.files("man", "\\.Rd$", full.names = TRUE)) tools::checkRd(f)
 
-# 2. README.md desde README.Rmd
+# 2. README.md desde README.Rmd 
 build_readme()
 
 # 3. Comprobar (construye el paquete y las viñetas por dentro) e instalar
